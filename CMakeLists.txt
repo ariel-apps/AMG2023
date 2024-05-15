@@ -93,6 +93,8 @@ if (AMG_WITH_ARIELAPI)
   find_package(arielapi REQUIRED)
   list(APPEND AMG_DEPENDENCIES
     arielapi)
+  list(APPEND AMG_LINK_DIRECTORIES
+    ${ARIELAPI_INCLUDE_DIR})
 endif()
 
 if (AMG_WITH_MPI)
@@ -115,5 +117,6 @@ configure_file(
 add_executable(amg amg.c)
 target_link_libraries(amg PUBLIC ${AMG_DEPENDENCIES} m)
 target_include_directories(amg PUBLIC ${CMAKE_BINARY_DIR})
+target_link_directories(amg PUBLIC ${AMG_LINK_DIRECTORIES})
 
 install(TARGETS amg DESTINATION ${CMAKE_INSTALL_BINDIR})
