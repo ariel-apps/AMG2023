@@ -15,6 +15,9 @@ if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
                        "out-of-source build in another directory.")
 endif()
 
+# Tell CMake to use our custom Find modules
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
 add_definitions(-DAMG_CMAKE_BUILD=1)
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
@@ -24,6 +27,8 @@ option(AMG_WITH_HIP "Use HIP" FALSE)
 option(AMG_WITH_CALIPER "Enable Caliper" FALSE)
 option(AMG_WITH_OMP "Enable OpenMP" FALSE)
 option(AMG_WITH_UMPIRE "Enable Umpire support (requires Umpire support in HYPRE)" FALSE)
+
+option(AMG_WITH_ARIELAPI "Enable Ariel API features" FALSE)
 
 find_library(HYPRE_LIBRARIES
     NAMES HYPRE
@@ -82,6 +87,12 @@ if (AMG_WITH_OMP)
   find_package(OpenMP REQUIRED)
   list(APPEND AMG_DEPENDENCIES
     OpenMP::OpenMP_C)
+endif()
+
+if (AMG_WITH_ARIELAPI)
+  find_package(ArielAPI REQUIRED)
+  list(APPEND AMG_DEPENDENCIES
+    ArielAPI)
 endif()
 
 if (AMG_WITH_MPI)

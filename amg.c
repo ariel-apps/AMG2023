@@ -51,6 +51,10 @@
 #include <adiak.h>
 #endif
 
+#ifdef USE_ARIEL
+#include <arielapi.h>
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -519,6 +523,9 @@ main( hypre_int argc,
     * Problem 2: Solve a 7pt 3D Laplace problem with AMG-PCG
     *-----------------------------------------------------------*/
 
+#ifdef USE_ARIEL
+   ariel_enable();
+#endif
 
    if (problem_id == 2 )
    {
@@ -786,6 +793,10 @@ main( hypre_int argc,
       CALI_MARK_END("Problem");
 #endif
    }
+
+#ifdef USE_ARIEL
+   ariel_disable();
+#endif
 
 #if defined(HYPRE_USING_UMPIRE)
    if (myid == 0)
