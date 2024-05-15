@@ -17,7 +17,7 @@ find_path(ARIELAPI_INCLUDE_DIR
     "${SST_ELEMENTS_ROOT}/src/sst/elements/ariel/api")
 
 if ((NOT ARIELAPI_INCLUDE_DIR) OR (NOT ARIELAPI_LIBRARY))
-	message(FATAL_ERROR "ArielAPI not found")
+	message(FATAL_ERROR "arielapi not found")
 else()
 	set(ARIELAPI_FOUND CACHE BOOL TRUE)
 endif()

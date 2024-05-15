@@ -90,9 +90,9 @@ if (AMG_WITH_OMP)
 endif()
 
 if (AMG_WITH_ARIELAPI)
-  find_package(ArielAPI REQUIRED)
+  find_package(arielapi REQUIRED)
   list(APPEND AMG_DEPENDENCIES
-    ArielAPI)
+    arielapi)
 endif()
 
 if (AMG_WITH_MPI)
