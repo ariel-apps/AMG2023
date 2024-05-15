@@ -19,6 +19,6 @@ find_path(ARIELAPI_INCLUDE_DIR
 if ((NOT ARIELAPI_INCLUDE_DIR) OR (NOT ARIELAPI_LIBRARY))
 	message(FATAL_ERROR "arielapi not found")
 else()
-	set(ARIELAPI_FOUND CACHE BOOL TRUE)
-	set(ENV{USE_ARIELAPI} 1)
+	set(ARIELAPI_FOUND TRUE CACHE BOOL "Whether the ArielAPI library and header files were found")
+	set(ARIELAPI_INCLUDE_DIR "${ARIELAPI_INCLUDE_DIR}" CACHE STRING "The location of the Ariel API included with Ariel")
 endif()
