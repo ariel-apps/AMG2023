@@ -51,7 +51,7 @@
 #include <adiak.h>
 #endif
 
-#ifdef USE_ARIEL
+#ifdef AMG_USING_ARIELAPI
 #include <arielapi.h>
 #endif
 
@@ -523,7 +523,7 @@ main( hypre_int argc,
     * Problem 2: Solve a 7pt 3D Laplace problem with AMG-PCG
     *-----------------------------------------------------------*/
 
-#ifdef USE_ARIEL
+#ifdef AMG_USING_ARIELAPI
    ariel_enable();
 #endif
 
@@ -794,7 +794,7 @@ main( hypre_int argc,
 #endif
    }
 
-#ifdef USE_ARIEL
+#ifdef AMG_USING_ARIELAPI
    ariel_disable();
 #endif
 
