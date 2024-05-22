@@ -523,10 +523,6 @@ main( hypre_int argc,
     * Problem 2: Solve a 7pt 3D Laplace problem with AMG-PCG
     *-----------------------------------------------------------*/
 
-#ifdef USE_ARIELAPI
-   ariel_enable();
-#endif
-
    if (problem_id == 2 )
    {
 #ifdef USE_CALIPER
@@ -617,11 +613,17 @@ main( hypre_int argc,
       CALI_MARK_BEGIN("Solve");
 #endif
       hypre_BeginTiming(time_index);
+#ifdef USE_ARIELAPI
+      ariel_enable();
+#endif
 
       HYPRE_PCGSolve(pcg_solver, (HYPRE_Matrix)parcsr_A,
                      (HYPRE_Vector)b, (HYPRE_Vector)x);
 
       hypre_MPI_Barrier(comm);
+#ifdef USE_ARIELAPI
+      ariel_disable();
+#endif
       hypre_EndTiming(time_index);
 #ifdef USE_CALIPER
       CALI_MARK_END("Solve");
@@ -753,10 +755,16 @@ main( hypre_int argc,
       CALI_MARK_BEGIN("Solve");
 #endif
       hypre_BeginTiming(time_index);
+#ifdef USE_ARIELAPI
+      ariel_enable();
+#endif
 
       HYPRE_GMRESSolve (pcg_solver, (HYPRE_Matrix)parcsr_A, (HYPRE_Vector)b, (HYPRE_Vector)x);
 
       hypre_MPI_Barrier(comm);
+#ifdef USE_ARIELAPI
+      ariel_disable();
+#endif
       hypre_EndTiming(time_index);
 #ifdef USE_CALIPER
       CALI_MARK_END("Solve");
@@ -793,10 +801,6 @@ main( hypre_int argc,
       CALI_MARK_END("Problem");
 #endif
    }
-
-#ifdef USE_ARIELAPI
-   ariel_disable();
-#endif
 
 #if defined(HYPRE_USING_UMPIRE)
    if (myid == 0)
