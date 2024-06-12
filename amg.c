@@ -614,6 +614,7 @@ main( hypre_int argc,
 #endif
       hypre_BeginTiming(time_index);
 #ifdef USE_ARIELAPI
+      ariel_output_stats();
       ariel_enable();
 #endif
 
@@ -622,6 +623,7 @@ main( hypre_int argc,
 
       hypre_MPI_Barrier(comm);
 #ifdef USE_ARIELAPI
+      ariel_output_stats();
       ariel_disable();
 #endif
       hypre_EndTiming(time_index);
@@ -756,6 +758,7 @@ main( hypre_int argc,
 #endif
       hypre_BeginTiming(time_index);
 #ifdef USE_ARIELAPI
+      ariel_output_stats();
       ariel_enable();
 #endif
 
@@ -763,6 +766,7 @@ main( hypre_int argc,
 
       hypre_MPI_Barrier(comm);
 #ifdef USE_ARIELAPI
+      ariel_output_stats();
       ariel_disable();
 #endif
       hypre_EndTiming(time_index);
